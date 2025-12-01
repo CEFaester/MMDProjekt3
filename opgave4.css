@@ -18,7 +18,7 @@ body {
         "main main main"
         "right right right"
         "footer footer footer";
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 2fr 3fr 2fr;
     grid-template-rows: 100px 100px auto 100px 100px;
     gap: 5px;
     background-color: rgb(221, 98, 170);
@@ -43,7 +43,7 @@ h2 {
             "main main main"
             "right right right"
             "footer footer footer";
-        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-columns: 2fr 3fr 2fr;
         grid-template-rows: 100px 100px auto 100px 100px;
         gap: 5px;
         background-color: rgb(221, 98, 170);
@@ -58,7 +58,7 @@ h2 {
             "header header header"
             "menu main right"
             "footer footer footer";
-        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-columns: 2fr 3fr 2fr;
         grid-template-rows: 100px auto 100px;
         height: 100vh;
         gap: 8px;
