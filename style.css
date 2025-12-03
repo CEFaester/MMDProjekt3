@@ -1,0 +1,97 @@
+/* Generel nulstilling */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Cal Sans", sans-serif;
+}
+
+.header {grid-area: header;}
+.main {grid-area: main;}
+.footer {grid-area: footer;}
+
+/* --- GRID LAYOUT (Selve siden) --- */
+.page-container {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "main main main"
+        "footer footer footer";
+    /* 3 rækker: Header (auto), Indhold (resten), Footer (auto) */
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh; /* Fylder hele skærmhøjden */
+}
+
+/* --- FLEXBOX HEADER --- */
+.header {
+    grid-row: 1; /* Placeres i første række af gridet */
+    background-color: #9047CC;
+    color: #F4D9B8;
+    padding: 1rem 2rem;
+
+    /* Flexbox aktivering */
+    display: flex;
+    justify-content: space-between; /* Skubber logo til venstre og knap til højre */
+    align-items: center; /* Centrerer indholdet lodret */
+}
+
+/* Styling af elementer i headeren */
+.logo {
+    font-weight: bold;
+    font-family: "Rammetto One", sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex; /* Flexbox igen for at styre menu-punkterne */
+    gap: 25px;     /* Afstand mellem links */
+}
+
+.nav-links a {
+    color: #F4D9B8;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 20px;
+}
+
+.cta-button {
+    background-color: #EE81A2;
+    padding: 0.6rem 0.6rem;
+    border-radius: 200px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button-ommig {
+    background-color: #FF8F1F;
+    padding: 0.6rem 1.2rem;
+    border-radius: 200px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #e6abbd;
+}
+
+.cta-button-ommig:hover {
+    background-color: #ffae5c;
+}
+
+/* --- OVRIGT INDHOLD --- */
+main {
+    background-color: #F4D9B8;
+    padding: 3rem;
+    line-height: 1.6;
+}
+
+footer {
+    background-color: #9047CC;
+    color: #bdc3c7;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
