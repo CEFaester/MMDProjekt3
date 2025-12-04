@@ -3,101 +3,146 @@ body, html {
   padding: 0;
   height: 100%;
   font-family: "Cal Sans", sans-serif;
+  overflow-x: hidden; /* Forhindrer scrollbar når menuen er skubbet ud */
 }
 
-.header {grid-area: header;}
-.main {grid-area: main;}
-.footer {grid-area: footer;}
-
 .page-container {
-display: grid;
-grid-template-areas: 
-    "header header header"
-    "main main footer"
-    "main main footer";
-grid-template-rows: auto 1fr auto;
-min-height: 100vh;
+  display: grid;
+  grid-template-areas: 
+      "header header header"
+      "main main main"
+      "footer footer footer";
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }
 
 .header {
-    grid-row: 1;
-    background-color: #9047CC;
-    color: #F4D9B8;
-    padding: 1rem 2rem;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  grid-area: header; /* Bruger grid-area i stedet for row */
+  background-color: #9047CC;
+  color: #F4D9B8;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Vigtig for at menuen kan placeres rigtigt */
 }
 
 .logo {
-    font-weight: bold;
-    font-family: "Rammetto One", sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
+  font-weight: bold;
+  font-family: "Rammetto One", sans-serif;
+  font-size: clamp(1rem, 2vw, 3rem);
+  letter-spacing: 1px;
+  z-index: 20; /* Sørger for logo altid er øverst */
 }
 
-.nav-links {
-    display: flex;
-    gap: 25px;
+/* --- 3. MOBIL MENU (STANDARD STYLING) --- */
+/* Dette gælder for MOBIL først */
+
+/* Checkboxen (skjult) */
+#menu-toggle {
+  display: none;
 }
 
-.nav-links a {
-    color: #F4D9B8;
-    text-decoration: none;
-    transition: color 0.3s;
-    font-size: 20px;
+/* Burger Ikonet */
+.burger-menu {
+  display: flex; /* Vis burger på mobil */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 20; /* Ligger over menuen */
 }
 
+.bar {
+  width: 25px; height: 3px; background-color: #F4D9B8; border-radius: 3px;
+}
+
+/* Menuen på Mobil (Skjult ude til højre) */
+.navbar {
+  position: absolute;
+  top: 0; right: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #101914;
+  
+  /* Flex opsætning for mobil */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+  
+  /* Animation */
+  transform: translateX(100%); 
+  transition: transform 0.4s ease-in-out;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+  z-index: 15;
+}
+
+.navbar a {
+  color: #F4D9B8;
+  text-decoration: none;
+  font-size: clamp(1.5rem, 20vw, 20rem);
+}
+
+/* Åben menuen når checkbox er hakket af */
+#menu-toggle:checked ~ .navbar {
+  transform: translateX(0);
+}
+
+
+/* --- 4. KNAPPER --- */
 .cta-button {
-    background-color: #EE81A2;
-    padding: 0.6rem 0.6rem;
-    border-radius: 200px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #EE81A2;
+  padding: 0.6rem 0.6rem;
+  border-radius: 200px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .cta-button-ommig {
-    background-color: #FF8F1F;
-    padding: 0.6rem 1.2rem;
-    border-radius: 200px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: #FF8F1F;
+  padding: 0.6rem 1.2rem;
+  border-radius: 200px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.cta-button:hover {
-    background-color: #e6abbd;
-}
+.cta-button:hover { background-color: #e6abbd; }
+.cta-button-ommig:hover { background-color: #ffae5c; }
 
-.cta-button-ommig:hover {
-    background-color: #ffae5c;
-}
 
-main {
-    background-color: #F4D9B8;
-    padding: 3rem;
-    line-height: 1.6;
-}
+/* --- 5. CONTENT & FOOTER --- */
+.main { grid-area: main; background-color: #F4D9B8; padding: 3rem; line-height: 1.6; }
+.footer { grid-area: footer; background-color: #9047CC; color: #bdc3c7; padding: 1.5rem; text-align: center; }
 
-footer {
-    background-color: #9047CC;
-    color: #bdc3c7;
-    padding: 1.5rem;
-    text-align: center;
-    font-size: 0.9rem;
-}
 
-@media screen and (min-width:1000px) {
-    .page-container {
-    display: grid;
-    grid-template-areas: 
-        "header header header"
-        "main main main"
-        "footer footer footer";
-    grid-template-rows: auto 1fr auto;
-    min-height: 100vh;
-    }
-}
+/* --- 6. DESKTOP VERSION (Media Query) --- */
+/* Her overskriver vi mobil-reglerne, når skærmen er over 1000px */
+@media screen and (min-width: 1000px) {
 
+  /* Skjul burger menuen */
+  .burger-menu {
+    display: none; 
+  }
+
+  /* Nulstil menuen til at være vandret og synlig */
+  .navbar {
+    position: static; /* Ikke længere absolute */
+    height: auto;
+    width: auto;
+    background-color: transparent; /* Fjern baggrundsfarve */
+    box-shadow: none;
+    
+    transform: none; /* Fjern animationen så den altid er synlig */
+    
+    flex-direction: row; /* Links ved siden af hinanden */
+    justify-content: flex-end;
+  }
+  
+  /* Gør teksten mindre på desktop */
+  .navbar a {
+    font-size: clamp(1rem, 2vw, 3rem); 
+  }
+}
