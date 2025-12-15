@@ -143,7 +143,7 @@ h2{
   justify-content: flex-start;
   align-items: center;
 
-  background-color: #EE81A2;
+  background-color: #9047CC;
   border-radius: 20px;
   padding: 2rem;
 }
@@ -153,12 +153,53 @@ h2{
 
 }
 
+.box2 span u {
+  color: #FF8F1F;
+}
+
 .picvid {
   width: 20rem;
   height: auto;
   display: inline-block;
   margin-right: 15px;
   margin-bottom: 0;
+}
+
+/*Her bliver checkboxen skjult*/
+.burger-checkbox {
+  display: none;
+}
+
+/* Styling af burger menuen */
+.burger-container {
+  display: block;
+  width: 142px;
+  height: 126px;
+  background-image: url('billeder/Burger.png');
+  background-size: 994px 126px; 
+  cursor: pointer;
+  
+  /* Standart tilstand (Når boksen ikke er tjekket)*/
+  /* Bliver tilbage animationen afspillet, så menuen bare ligner en burger*/
+  animation: burger-tilbage .5s steps(6) forwards;
+}
+
+/* Tjekket tilstand (Når boksen er tjekket) */
+/* "input:checked + label" betyder find det label der kommer lige efter boksen er tjekket, hvilket så er animationen der ændre burger menuen til en stjerne */
+.burger-checkbox:checked + .burger-container {
+  animation: burger-frem .5s steps(6) forwards;
+}
+
+/* Animationen kører fra det første frame til det sidste frame*/
+@keyframes burger-frem {
+  from { background-position: 0px; }
+  to { background-position: -852px; }
+}
+
+/* Animationen kører fra det sidste frame til det første frame*/
+@keyframes burger-tilbage {
+  from { background-position: -852px; }
+  to { background-position: 0px; }
 }
 
 #projekter {
