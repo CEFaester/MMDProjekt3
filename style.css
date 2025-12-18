@@ -300,7 +300,7 @@ p {
 
 .om-tekst {
   flex: 1;
-  min-width: 100;
+  min-width: 100px;
 }
 
 /* --- Kompetencer (KT) --- */
