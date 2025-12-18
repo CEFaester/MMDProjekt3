@@ -14,7 +14,7 @@ body, html {
   height: 100%;
   font-family: "Cal Sans", sans-serif;
   overflow-x: hidden; /* Forhindrer scrollbar når menuen er skubbet ud */
-  background-color: var(--primary-dark-color);
+  background-color: var(--primary-light-color);
   max-width: 1500px;
 }
 
@@ -24,13 +24,13 @@ p{
 
 h1{
   font-family: "Rammetto One", sans-serif;
-  font-size: clamp(2.5rem, 3vw, 4rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   margin-top: 0;
 }
 
 h2{
   font-family: "Rammetto One", sans-serif;
-  font-size: clamp(2.5rem, 3vw, 4rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   margin-top: 0;
 }
 
@@ -43,7 +43,7 @@ h2{
       "projekter"
       "kontakt"
       "footer";
-  grid-template-rows: 4rem auto auto auto auto 5rem;
+  grid-template-rows: 5rem auto auto auto auto auto;
   min-height: 100vh;
   gap: 0;
 }
@@ -84,6 +84,27 @@ h2{
   z-index: 10;
 }
 
+.mig-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.profil {
+  max-width: 20rem;
+  height: auto;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.om-tekst {
+  flex: 1;
+  min-width: 100;
+}
+
 #kt {
   grid-area: kt;
   width: 100%;
@@ -116,7 +137,7 @@ h2{
   justify-content: flex-start;
   align-items: center;
 
-  background-color: var(--primary-orange);
+  background-color: var(--primary-purple);
   border-radius: 20px;
   padding-left: 20px;
 }
@@ -244,6 +265,56 @@ h2{
   z-index: 7;
 }
 
+/* Selve boksen omkring formularen */
+.contact-form {
+  max-width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;   /* Centrerer boksen */
+  padding: 2rem;
+  background-color: var(--primary-pink);
+  border-radius: 20px;
+}
+
+/* Teksten over felterne */
+.contact-form label {
+  display: block; /* Sørger for label står på sin egen linje */
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--primary-light-color);
+}
+
+/* Input felter og tekstområde */
+.contact-form input, 
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px; 
+  box-sizing: border-box; 
+  font-family: inherit; 
+  border: none;
+  background-color: var(--primary-light-color);
+  color: var(--primary-dark-color);
+}
+
+/* Knappen */
+.contact-form button {
+ width: 100%;
+  padding: 12px;
+  background-color: var(--primary-purple); /* Din lilla farve */
+  color: var(--primary-light-color);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Hover effekt på knappen (når musen er over) */
+.contact-form button:hover {
+  background-color: #822bca;
+}
+
+
 /* Checkboxen (skjult) */
 #menu-toggle {
   display: none;
@@ -251,24 +322,24 @@ h2{
 
 /* Burger Ikonet */
 .burger-menu {
-  display: flex; /* Vis burger på mobil */
+  display: flex;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  z-index: 20; /* Ligger over menuen */
+  z-index: 20;
 }
 
 .bar {
   width: 25px; height: 3px; background-color: var(--primary-light-color); border-radius: 3px;
 }
 
-/* Menuen på Mobil (Skjult ude til højre) */
+/* Menuen på Mobil */
 .navbar {
   position: absolute;
   top: 0; right: 0;
   height: 30rem;
   width: 100%;
-  background-color: #101914;
+  background-color: var(--primary-dark-color);
   border-bottom-right-radius: 5rem;
   border-bottom-left-radius: 5rem;
   
@@ -297,54 +368,6 @@ h2{
   transform: translateY(0);
 }
 
-
-/* Selve boksen omkring formularen */
-.contact-form {
-  width: 100%;
-  max-width: 400px; /* Sørger for den ikke bliver for bred på store skærme */
-  margin: 0 auto;   /* Centrerer boksen */
-  padding: 2rem;
-  background-color: #f4f4f4; /* En lys grå baggrund */
-  border-radius: 20px;
-}
-
-/* Teksten over felterne */
-.contact-form label {
-  display: block; /* Sørger for label står på sin egen linje */
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Input felter og tekstområde */
-.contact-form input, 
-.contact-form textarea {
-  width: 100%;    /* Fylder hele bredden af containeren */
-  padding: 10px;
-  margin-bottom: 15px; /* Luft ned til næste felt */
-  border: 1px solid #ccc;
-  border-radius: 8px; /* Lidt runding på hjørnerne */
-  box-sizing: border-box; /* VIGTIGT: Sørger for padding ikke gør boksen bredere end 100% */
-  font-family: inherit; /* Bruger samme skrifttype som resten af siden */
-}
-
-/* Knappen */
-.contact-form button {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--primary-purple); /* Din lilla farve */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-/* Hover effekt på knappen (når musen er over) */
-.contact-form button:hover {
-  background-color: hsl(from var(--primary-purple) h s calc(l - 10)); /* En lidt mørkere lilla */
-}
-
 .footer {
   grid-area: footer; 
   background-color: var(--primary-purple); 
@@ -356,8 +379,18 @@ h2{
   z-index: 6;
 }
 
-/* --- 6. DESKTOP VERSION (Media Query) --- */
-/* Her overskriver vi mobil-reglerne, når skærmen er over 1000px */
+.foot ul {
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0;
+}
+
+.foot h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Her bliver desktop versionen opstillet*/
 @media screen and (min-width: 1000px) {
 
   /* Skjul burger menuen */
@@ -365,20 +398,18 @@ h2{
     display: none; 
   }
 
-  /* Nulstil menuen til at være vandret og synlig */
   .navbar {
     gap: 2rem;
-    position: static; /* Ikke længere absolute */
+    position: static;
     height: auto;
     width: auto;
-    background-color: transparent; /* Fjern baggrundsfarve */
+    background-color: transparent;
     box-shadow: none;
-    transform: none; /* Fjern animationen så den altid er synlig */
-    flex-direction: row; /* Links ved siden af hinanden */
+    transform: none;
+    flex-direction: row;
     justify-content: flex-end;
   }
   
-  /* Gør teksten mindre på desktop */
   .navbar a {
     font-size: 2rem; 
   }
@@ -392,7 +423,7 @@ h2{
     justify-content: flex-start;
     align-items: center;
 
-    background-color: var(--primary-orange);
+    background-color: var(--primary-purple);
     border-radius: 20px;
     padding-left: 20px;
   }
@@ -408,4 +439,9 @@ h2{
     margin-right: 15px;
     margin-bottom: 0;
   }
+
+  .mig-container {
+  display: flex;
+  flex-direction: row;
+}
 }
